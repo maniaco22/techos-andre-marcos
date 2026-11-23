@@ -21,3 +21,4 @@ O **TechOS** segue o modelo arquitetural Cliente-Servidor RESTful desacoplado em
                                                                       SQL / TCP (3306)
                                                                             v
                                                                  [MySQL Server / Workbench]
+                                                                 
