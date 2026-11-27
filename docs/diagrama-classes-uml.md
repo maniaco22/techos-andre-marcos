@@ -1,6 +1,6 @@
-﻿# Diagrama de Classes UML - Sistema TechOS (Sprint 2)
+# Diagrama de Classes UML - Sistema TechOS (Sprint 2)
 
-mermaid
+```mermaid
 classDiagram
     class Database {
         -PDO instance$
@@ -48,4 +48,4 @@ classDiagram
     Equipamento "1" --> "0..*" OrdemServico : vinculado a
     OrdemServicoFactory ..> OrdemServico : instancia
     StatusOSStrategy ..> OrdemServico : gerencia estado
-
+```
