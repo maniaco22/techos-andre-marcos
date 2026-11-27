@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechOS — Sistema de Gestão de Ordens de Serviço</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Tela de Login [US01] -->
+  <section id="login-screen" class="login-wrapper">
+    <div class="login-card">
+      <div class="brand">
+        <span class="badge">SENAI PE • Belo Jardim</span>
+        <h1>TechOS</h1>
+        <p>Gestão de Assistência Técnica & Ordens de Serviço</p>
+      </div>
+      <form id="form-login">
+        <label>E-mail corporativo
+          <input type="email" id="login-email" value="admin@techos.com" required>
+        </label>
+        <label>Senha
+          <input type="password" id="login-senha" value="Admin@2026" required>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Entrar no Sistema</button>
+        <p id="login-erro" class="msg-erro"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Painel Principal -->
+  <div id="app-screen" class="hidden">
+    <header class="topbar">
+      <div class="topbar-brand">
+        <strong>TechOS</strong>
+        <span id="user-info"></span>
+      </div>
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="tab-os">Ordens de Serviço</button>
+        <button class="tab-btn" data-tab="tab-clientes">Clientes</button>
+        <button class="tab-btn" data-tab="tab-equipamentos">Equipamentos</button>
+        <button id="btn-logout" class="btn btn-outline">Sair</button>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Indicadores Dashboard [US06] -->
+      <section class="kpis">
+        <div class="kpi-card kpi-aberta"><span>Abertas</span><strong id="kpi-abertas">0</strong></div>
+        <div class="kpi-card kpi-andamento"><span>Em Andamento</span><strong id="kpi-andamento">0</strong></div>
+        <div class="kpi-card kpi-concluida"><span>Concluídas</span><strong id="kpi-concluidas">0</strong></div>
+        <div class="kpi-card kpi-faturamento"><span>Faturamento</span><strong id="kpi-faturamento">R$ 0,00</strong></div>
+      </section>
+
+      <!-- Aba Ordens de Serviço [US04 / US05] -->
+      <section id="tab-os" class="tab-content">
+        <div class="card">
+          <h2>Nova Ordem de Serviço</h2>
+          <form id="form-os" class="grid-form">
+            <select id="os-cliente" required><option value="">Selecione o Cliente...</option></select>
+            <select id="os-equipamento" required><option value="">Selecione o Equipamento...</option></select>
+            <input type="text" id="os-defeito" placeholder="Defeito relatado pelo cliente..." required>
+            <button type="submit" class="btn btn-primary">Abrir OS</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Ordens de Serviço Cadastradas</h2>
+            <select id="filtro-status">
+              <option value="">Todos os Status</option>
+              <option value="ABERTA">Abertas</option>
+              <option value="EM_ANDAMENTO">Em Andamento</option>
+              <option value="CONCLUIDA">Concluídas</option>
+            </select>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Protocolo</th><th>Cliente</th><th>Equipamento</th><th>Defeito</th><th>Status</th><th>Valor</th><th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabela-os"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aba Clientes [US02] -->
+      <section id="tab-clientes" class="tab-content hidden">
+        <div class="card">
+          <h2>Cadastrar Cliente</h2>
+          <form id="form-cliente" class="grid-form">
+            <input type="text" id="cli-nome" placeholder="Nome completo" required>
+            <input type="text" id="cli-telefone" placeholder="(81) 99999-9999" maxlength="15" required>
+            <input type="email" id="cli-email" placeholder="E-mail (opcional)">
+            <button type="submit" class="btn btn-primary">Salvar Cliente</button>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Clientes Cadastrados</h2>
+          <div class="table-responsive">
+            <table>
+              <thead><tr><th>ID</th><th>Nome</th><th>Telefone</th><th>E-mail</th></tr></thead>
+              <tbody id="tabela-clientes"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Aba Equipamentos [US03] -->
+      <section id="tab-equipamentos" class="tab-content hidden">
+        <div class="card">
+          <h2>Cadastrar Equipamento</h2>
+          <form id="form-equipamento" class="grid-form">
+            <select id="eq-cliente" required><option value="">Proprietário (Cliente)...</option></select>
+            <input type="text" id="eq-modelo" placeholder="Marca / Modelo (ex: Dell Inspiron 15)" required>
+            <input type="text" id="eq-serie" placeholder="Número de Série" required>
+            <button type="submit" class="btn btn-primary">Salvar Equipamento</button>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Equipamentos Registrados</h2>
+          <div class="table-responsive">
+            <table>
+              <thead><tr><th>ID</th><th>Cliente</th><th>Modelo</th><th>Nº Série</th></tr></thead>
+              <tbody id="tabela-equipamentos"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
